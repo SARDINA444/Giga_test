@@ -17,7 +17,6 @@ giga = GigaChat(
 system_msg = SystemMessage(content='Тебе необходимо проанализировать текст и кратко пересказать его')
 
 
-def request_to_giga(text):
-    result = giga.invoke([system_msg, HumanMessage(content=text)])
-    return result.content
-
+async def request_to_giga(text):
+    result = await giga.agenerate([[system_msg, HumanMessage(content=text)]])
+    return result
